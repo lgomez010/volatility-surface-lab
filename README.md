@@ -15,7 +15,7 @@ I first encountered GMC at a summer school on probabilistic number theory hosted
 
 ## Status
 
-**Active development.** The data layer is committed and tested; modeling milestones are in progress. See the [Roadmap](#roadmap) for a milestone-by-milestone status.
+**Active development.** The data layer is committed and tested; modeling milestones are in progress. See the [Roadmap](#roadmap) for a milestone-by-milestone layout. Currently I'm on M3.
 
 **What runs today:**
 - Schema-validated options data pipeline (`src/data/schema.py`, `src/data/fetch.py`)
