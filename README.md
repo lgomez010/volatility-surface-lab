@@ -8,7 +8,7 @@
 
 This project takes **rough volatility** — the empirical observation that log-volatility behaves like fractional Brownian motion with Hurst exponent $H \approx 0.1$ — as its main focus, with the goal of eventually coming to **log-correlated Gaussian fields** and **Gaussian Multiplicative Chaos (GMC)**.
 
-I first encountered GMC at a summer school on probabilistic number theory hosted by the Université de Montréal, and was struck that the same object appears as the mathematical substrate of the rough Bergomi model. This project is where I explore that connection.
+I first encountered GMC at a summer school on probabilistic number theory hosted by the Université de Montréal, and was excited that the same object appears in the rough Bergomi model. This project is where I explore that connection.
 
 
 ---
