@@ -2,12 +2,13 @@
 
 import pandas as pd
 import pytest
-from src.data.schema import SCHEMA, SchemaError, validate
-from src.data.schema import SCHEMA
+from src.data.schema import SCHEMA, SchemaError, validate, add_time_to_expiry
 
 @pytest.fixture
 def make_df():
     """Factory returning a 3-row DataFrame matching SCHEMA."""
+    # tests can mutate without contaminating other tests
+    # each call returns a fresh frame.
 
     def _make():
         return pd.DataFrame({
@@ -29,28 +30,37 @@ def make_df():
     return _make
 
 def test_validate_accepts_valid_df(make_df):
-    from src.data.schema import validate
+    # a schema-conforming frame passes silently.
 
     df = make_df()
     validate(df)  # should not raise
 
 def test_validate_rejects_missing_column(make_df):
+    # Missing required column → SchemaError naming the absent column.
+
     df = make_df().drop(columns=["open_interest"])
     with pytest.raises(SchemaError, match="open_interest"):
         validate(df)
 
 def test_validate_rejects_extra_column(make_df):
+    # unknown columns fail 
+
     df = make_df().assign(unexpected=1.0)
     with pytest.raises(SchemaError, match="unexpected"):
         validate(df)
 
 def test_validate_rejects_wrong_dtype(make_df):
+    # Dtype mismatch (int64 where float64 is required)
+
     df = make_df()
     df["strike"] = df["strike"].astype("int64")
     with pytest.raises(SchemaError, match="strike"):
         validate(df)
 
 def test_validate_reports_all_violations(make_df):
+    # validate accumulates ALL errors before raising once.
+    # Three separate asserts so failures localize 
+
     df = make_df().drop(columns=["open_interest"]).assign(unexpected=1.0)
     df["strike"] = df["strike"].astype("int64")
 
@@ -63,7 +73,8 @@ def test_validate_reports_all_violations(make_df):
     assert "strike" in msg
 
 def test_add_time_to_expiry_computes_T_and_does_not_mutate():
-    from src.data.schema import add_time_to_expiry
+    # add_time_to_expiry — keeps this test isolated to one function.
+    # Checks correct T value AND non-mutation of caller's frame.
 
     original = pd.DataFrame({
         "timestamp": pd.to_datetime(["2026-01-01"], utc=True),
