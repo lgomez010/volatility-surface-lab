@@ -18,7 +18,6 @@ SCHEMA = {
     "type": pd.CategoricalDtype(categories=["C", "P"]),
     "volume": "Int64",
     "open_interest": "Int64"
-
 }
 
 def validate(df: pd.DataFrame) -> None:
@@ -48,7 +47,7 @@ def validate(df: pd.DataFrame) -> None:
         )
 
 DAYS_PER_YEAR = 365
-SECONDS_PER_YEAR = DAYS_PER_YEAR * 86400 #86400- = 24 * 60 * 60 
+SECONDS_PER_YEAR = DAYS_PER_YEAR * 86400 #86400 = 24 * 60 * 60 
 
 
 def add_time_to_expiry(df: pd.DataFrame) -> pd.DataFrame:
