@@ -38,7 +38,7 @@ pytest
 Fetch a schema-validated options chain snapshot:
 
 ```python
-from src.data.fetch import fetch_chain
+from vollab.data.fetch import fetch_chain
 
 df = fetch_chain(ticker="SPY", expiry="2027-01-15", risk_free_rate=0.04)
 print(df.shape)   # (n_contracts, 11)

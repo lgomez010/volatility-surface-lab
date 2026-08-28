@@ -13,7 +13,7 @@ from pathlib import Path
 
 import yfinance as yf
 
-from src.data.fetch import fetch_chain
+from vollab.data.fetch import fetch_chain
 
 
 TICKER = "SPY"

@@ -1,10 +1,10 @@
-from src.data.schema import SCHEMA, validate, add_time_to_expiry
 import pandas as pd
 import yfinance as yf
 import pytest 
 from collections import namedtuple
 from unittest.mock import patch, MagicMock
-from src.data.fetch import fetch_chain
+from vollab.data.schema import SCHEMA, validate, add_time_to_expiry
+from vollab.data.fetch import fetch_chain
 
 
 def make_fake_calls():
@@ -52,7 +52,7 @@ def mock_yf_ticker():
     fake_ticker.option_chain.return_value = fake_chain
     fake_ticker.history.return_value = pd.DataFrame({"Close": [505.0]})
 
-    with patch("src.data.fetch.yf.Ticker") as mock_ticker_class:
+    with patch("vollab.data.fetch.yf.Ticker") as mock_ticker_class:
         mock_ticker_class.return_value = fake_ticker
         yield fake_ticker
 

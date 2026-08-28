@@ -38,7 +38,7 @@ notebooks = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*"]
+include = ["vollab*"]
 
 [tool.black]
 line-length = 88

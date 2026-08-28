@@ -13,6 +13,7 @@ from __future__ import annotations
 import pandas as pd
 
 
+
 def filter_zero_bid(df: pd.DataFrame) -> pd.DataFrame:
     """Drop rows with non-positive bid, non-positive ask, or crossed quotes.
 
@@ -40,7 +41,7 @@ def filter_illiquid(df: pd.DataFrame, min_open_interest: int = 10) -> pd.DataFra
     Disjunction is deliberate: a contract with 500 OI but no trades today
     is still liquid; a contract with 2 volume and 0 OI is a fluke print.
     """
-    mask = (df["volume"] > 0) | (df["openInterest"] >= min_open_interest)
+    mask = (df["volume"] > 0) | (df["open_interest"] >= min_open_interest)
     return df.loc[mask].reset_index(drop=True)
 
 
@@ -58,6 +59,6 @@ def filter_chain(
     df = filter_zero_bid(df)
     df = filter_wide_spread(df, max_spread_pct=max_spread_pct)
     df = filter_illiquid(df, min_open_interest=min_open_interest)
-    #df = df.copy()
+    df = df.copy()
     df["mid"] = (df["bid"] + df["ask"]) / 2
     return df.reset_index(drop=True)

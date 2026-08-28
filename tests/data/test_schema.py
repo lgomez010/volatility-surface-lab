@@ -2,7 +2,7 @@
 
 import pandas as pd
 import pytest
-from src.data.schema import SCHEMA, SchemaError, validate, add_time_to_expiry
+from vollab.data.schema import SCHEMA, SchemaError, validate, add_time_to_expiry
 
 @pytest.fixture
 def make_df():

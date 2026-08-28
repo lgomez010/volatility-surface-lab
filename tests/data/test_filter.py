@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from src.data.filter import (
+from vollab.data.filter import (
     filter_zero_bid,
     filter_wide_spread,
     filter_illiquid,
@@ -13,7 +13,7 @@ from src.data.filter import (
 
 def make_chain(rows):
     """Build a chain DataFrame from a list of (bid, ask, volume, oi) tuples."""
-    return pd.DataFrame(rows, columns=["bid", "ask", "volume", "openInterest"])
+    return pd.DataFrame(rows, columns=["bid", "ask", "volume", "open_interest"])
 
 
 def test_zero_bid_rows_are_dropped():
@@ -45,7 +45,7 @@ def test_illiquid_rows_are_dropped():
     ])
     out = filter_illiquid(df, min_open_interest=10)
     assert len(out) == 2
-    assert 2 not in out["openInterest"].values
+    assert 2 not in out["open_interest"].values
 
 
 def test_mid_price_column_is_added_and_correct():

@@ -12,7 +12,7 @@ trades a small speed cost for robustness across the full grid.
 import numpy as np
 from scipy.optimize import brentq
 
-from src.black_scholes import call_price, put_price
+from ..black_scholes import call_price, put_price
 
 
 def implied_vol(

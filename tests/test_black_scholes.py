@@ -2,7 +2,7 @@
 
 import numpy as np
 import pytest
-from src.black_scholes import (
+from vollab.black_scholes import (
     call_price,
     put_price,
     call_delta,

@@ -3,8 +3,8 @@
 import numpy as np
 import pytest
 
-from src.black_scholes import call_price, put_price
-from src.utils.implied_vol import implied_vol
+from vollab.black_scholes import call_price, put_price
+from vollab.utils.implied_vol import implied_vol
 
 
 @pytest.mark.parametrize("sigma_true", [0.10, 0.20, 0.35, 0.60])

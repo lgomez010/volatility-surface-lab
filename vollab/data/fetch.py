@@ -1,4 +1,4 @@
-from src.data.schema import SCHEMA, validate, add_time_to_expiry
+from vollab.data.schema import SCHEMA, validate, add_time_to_expiry
 import pandas as pd
 import yfinance as yf
 
